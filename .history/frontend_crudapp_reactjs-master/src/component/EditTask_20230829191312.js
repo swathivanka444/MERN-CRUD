@@ -4,11 +4,12 @@ import axios from "axios";
 export default function EditTask() {
     const { taskId } = useParams();
     const [tassk, setTask] = useState({});
+    console.log('taskId', taskId)
     useEffect(() => {
         axios
             .get(`http://localhost:4200/UpdateTask?taskId=${taskId}`)
             .then((response) => {
-                setTask(response.data); 
+                setTask(response.data); // Assuming the API returns JSON data
             })
             .catch((error) => {
                 console.error("Error fetching data:", error);
@@ -25,6 +26,8 @@ export default function EditTask() {
                 console.error("Error updating data:", error);
             });
     };
+
+
     return (
         <div className="container mt-5">
 

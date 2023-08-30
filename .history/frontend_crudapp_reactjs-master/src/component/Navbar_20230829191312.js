@@ -13,7 +13,9 @@ export default function Navbar() {
                         <li className="nav-item">
                             <Link className="nav-link text-white"  to="/">All Tasks</Link>
                         </li>
+
                     </ul>
+
                 </div>
             </div>
         </nav>

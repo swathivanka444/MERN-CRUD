@@ -4,6 +4,7 @@ import axios from "axios";
 export default function ViewTask() {
   const { taskId } = useParams();
   const [data, setData] = useState({});
+ console.log('taskId',taskId)
   useEffect(() => {
     axios
       .get(`http://localhost:4200/AllTasks?taskId=${taskId}`)

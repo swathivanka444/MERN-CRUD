@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import axios from "axios";
 export default function AllTasks() {
     const [data, setData] = useState([]);
@@ -9,7 +9,7 @@ export default function AllTasks() {
     const getTasks = () => {
         axios.get("http://localhost:4200/AllTasks/")
             .then(response => {
-                setData(response.data); 
+                setData(response.data); // Assuming the API returns JSON data
             })
             .catch(error => {
                 console.error('Error fetching data:', error);
@@ -21,9 +21,12 @@ export default function AllTasks() {
         })
             .then((response) => response.json())
             .then((data) => {
+                console.log('Task deleted successfully', data);
+                // After successful deletion, fetch the updated list of tasks
                 fetch("http://localhost:4200/AllTasks")
                     .then((response) => response.json())
                     .then((updatedData) => {
+                        // Update the state with the new list of tasks
                         setData(updatedData);
                     })
                     .catch((error) => {
@@ -45,7 +48,9 @@ export default function AllTasks() {
             .put(`http://localhost:4200/UpdateTask/${task?._id}`, updatedData
             )
             .then((response) => {
+                console.log("update", response);
                 getTasks()
+                // setTask(response.data);
             })
             .catch((error) => {
                 console.error("Error updating data:", error);

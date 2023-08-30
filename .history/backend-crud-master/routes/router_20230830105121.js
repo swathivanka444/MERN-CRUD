@@ -41,6 +41,7 @@ router.get('/AllTasks', async (req, res) => {
         console.error('Error retrieving tasks:', error);
         res.status(500).json({ error: 'Internal server error' });
     }
+
 });
 router.delete('/DeleteTask', async (req, res) => {
     try {

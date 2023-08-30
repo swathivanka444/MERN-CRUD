@@ -11,6 +11,7 @@ export default function AddTask() {
     }
     const addTaskData = async (e) => {
         e.preventDefault();
+        console.log('inputVal=====>', inputval)
         const res = await fetch("http://localhost:4200/AddTask", {
             method: "POST",
             headers: {
@@ -18,14 +19,18 @@ export default function AddTask() {
             },
             body: JSON.stringify(inputval)
         });
+        // debugger
         const data = await res.json();
+        console.log("data", data);
         if (res.status === 422 || !data) {
             alert("Error")
         }
         else {
-            console.log("Data Added");
+            // setInputval(data);
+            // alert("Data Added");
         }
     }
+
     return (
         <div className="container mt-5">
             <form className="mx-auto w-50 shadow p-5">
