@@ -6,7 +6,7 @@ export default function ViewTask() {
   const [data, setData] = useState({});
   useEffect(() => {
     axios
-      .get(`http://localhost:4200/AllTasks?taskId=${taskId}`)
+      .get(`https://taskmanagementapp-npo1.onrender.com/AllTasks?taskId=${taskId}`)
       .then((response) => {
         setData(response.data); // Assuming the API returns JSON data
       })

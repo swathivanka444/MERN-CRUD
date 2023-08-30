@@ -11,13 +11,14 @@ export default function AddTask() {
     }
     const addTaskData = async (e) => {
         e.preventDefault();
-        const res = await fetch("http://localhost:4200/AddTask", {
+        const res = await fetch("https://taskmanagementapp-npo1.onrender.com/AddTask", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
             },
             body: JSON.stringify(inputval)
         });
+    
         const data = await res.json();
         if (res.status === 422 || !data) {
             alert("Error")
@@ -26,6 +27,7 @@ export default function AddTask() {
             console.log("Data Added");
         }
     }
+
     return (
         <div className="container mt-5">
             <form className="mx-auto w-50 shadow p-5">

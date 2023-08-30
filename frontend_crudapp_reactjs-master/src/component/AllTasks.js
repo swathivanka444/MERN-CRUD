@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import axios from "axios";
 export default function AllTasks() {
     const [data, setData] = useState([]);
@@ -7,7 +7,7 @@ export default function AllTasks() {
         getTasks()
     }, []);
     const getTasks = () => {
-        axios.get("http://localhost:4200/AllTasks/")
+        axios.get("https://taskmanagementapp-npo1.onrender.com/AllTasks/")
             .then(response => {
                 setData(response.data); 
             })
@@ -16,12 +16,12 @@ export default function AllTasks() {
             });
     }
     const deleteTask = (taskId) => {
-        fetch(`http://localhost:4200/DeleteTask?taskId=${taskId}`, {
+        fetch(`https://taskmanagementapp-npo1.onrender.com/DeleteTask?taskId=${taskId}`, {
             method: 'DELETE'
         })
             .then((response) => response.json())
             .then((data) => {
-                fetch("http://localhost:4200/AllTasks")
+                fetch("https://taskmanagementapp-npo1.onrender.com/AllTasks")
                     .then((response) => response.json())
                     .then((updatedData) => {
                         setData(updatedData);
@@ -42,7 +42,7 @@ export default function AllTasks() {
             }
         })
         axios
-            .put(`http://localhost:4200/UpdateTask/${task?._id}`, updatedData
+            .put(`https://taskmanagementapp-npo1.onrender.com/UpdateTask/${task?._id}`, updatedData
             )
             .then((response) => {
                 getTasks()
