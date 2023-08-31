@@ -11,7 +11,10 @@ const taskSchema=new mongoose.Schema({
     mark:{
         type:Boolean,
         require:true
-    }
+    },
+  
+
 })
+
 const tasks=new mongoose.model("tasks",taskSchema);
 module.exports=tasks;

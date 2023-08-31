@@ -10,13 +10,15 @@ import AddTask from './component/AddTask';
 import EditTask from './component/EditTask';
 import ViewTask from './component/ViewTask';
 import Login from './component/Login';
+import Signup from './component/Signup';
 function App() {
   return (
     <>
       <BrowserRouter>
-        <Navbar />
+       
         <Routes>
           <Route path='/' element={<Login />} />
+          <Route path='/signup' element={<Signup />} />
           <Route path='/home' element={<AllTasks />} />
           <Route path='/AddTask' element={<AddTask />} />
           <Route path='/EditTask/:taskId' element={<EditTask />} />

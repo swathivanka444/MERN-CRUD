@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Link, useParams } from "react-router-dom";
 import axios from "axios";
+import Navbar from "./Navbar";
 export default function AllTasks() {
     const [data, setData] = useState([]);
     useEffect(() => {
@@ -53,7 +54,10 @@ export default function AllTasks() {
     };
 
     return (
+        <div>
+        <Navbar />
         <div className="container mt-5">
+
             <div className="mt-3">
                 <Link className="btn btn-success" to="/AddTask">Add Task</Link>
             </div>
@@ -90,6 +94,6 @@ export default function AllTasks() {
                     ))}
                 </tbody>
             </table>
-        </div>
+        </div></div>
     )
 }

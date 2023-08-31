@@ -11,7 +11,10 @@ export default function Navbar() {
                 <div className="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul className="navbar-nav me-auto mb-2 mb-lg-0">
                         <li className="nav-item">
-                            <Link className="nav-link text-white"  to="/">All Tasks</Link>
+                            <Link className="nav-link text-white"  to="/home">All Tasks</Link>
+                        </li>
+                        <li className="nav-item">
+                            <Link className="nav-link text-white"  to="/">Logout</Link>
                         </li>
                     </ul>
                 </div>
