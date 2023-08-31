@@ -28,7 +28,7 @@ const isEmailValid = (email) => {
     }else{
     if(inputval && inputval.email && inputval.password)
     {
-    const res = await fetch("https://tasksappcrud.onrender.com/AddUser", {
+    const res = await fetch("https://taskmanagementcrud.onrender.com/AddUser", {
       method: "POST",
       headers: {
         "Content-Type": "application/json"

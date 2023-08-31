@@ -14,7 +14,7 @@ export default function AddTask() {
     const addTaskData = async (e) => {
         e.preventDefault();
         if (inputval && inputval.title && inputval.description) {
-            const res = await fetch("https://tasksappcrud.onrender.com/AddTask", {
+            const res = await fetch("https://taskmanagementcrud.onrender.com/AddTask", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json"

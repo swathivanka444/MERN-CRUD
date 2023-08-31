@@ -38,7 +38,7 @@ export default function Login() {
 
 
       if (inputval && inputval.email && inputval.password) {
-        const res = await fetch("https://tasksappcrud.onrender.com/LoginUser", {
+        const res = await fetch("https://taskmanagementcrud.onrender.com/LoginUser", {
           method: "POST",
           headers: {
             "Content-Type": "application/json"

@@ -6,7 +6,7 @@ export default function ViewTask() {
   const [data, setData] = useState({});
   useEffect(() => {
     axios
-      .get(`https://tasksappcrud.onrender.com/AllTasks?taskId=${taskId}`)
+      .get(`https://taskmanagementcrud.onrender.com/AllTasks?taskId=${taskId}`)
       .then((response) => {
         setData(response.data); // Assuming the API returns JSON data
       })
