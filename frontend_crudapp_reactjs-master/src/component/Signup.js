@@ -4,6 +4,7 @@ import { useNavigate, Link } from "react-router-dom"
 
 
 function Signup() {
+  const navigate=useNavigate();
   const [inputval, setInputval] = useState({
     email: "",
     password: "",
@@ -28,6 +29,7 @@ function Signup() {
     }
     else {
       console.log("User Added");
+      navigate('/',{replace:true})
     }
   }
   return (
