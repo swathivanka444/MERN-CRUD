@@ -67,10 +67,7 @@ router.post("/LoginUser", async (req, res) => {
             }
             
         } else {
-            // const adduser = new users({ email,password });
-            // const savedUser = await adduser.save();
-            // console.log(savedUser)
-            // return res.status(201).json(savedUser);
+           
             return res.status(400).json({ messsage: "User does not exist " });
         }
 

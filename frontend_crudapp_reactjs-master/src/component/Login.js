@@ -21,7 +21,7 @@ export default function Login() {
   const LoginUserData = async (e) => {
     console.log("inputVal",inputval)
     e.preventDefault();
-    const res = await fetch("http://localhost:4200/LoginUser", {
+    const res = await fetch("https://tasksappcrud.onrender.com/LoginUser", {
       method: "POST",
       headers: {
         "Content-Type": "application/json"

@@ -8,7 +8,7 @@ export default function AllTasks() {
         getTasks()
     }, []);
     const getTasks = () => {
-        axios.get("https://taskmanagementapp-npo1.onrender.com/AllTasks/")
+        axios.get("https://tasksappcrud.onrender.com/AllTasks/")
             .then(response => {
                 setData(response.data); 
             })
@@ -17,12 +17,12 @@ export default function AllTasks() {
             });
     }
     const deleteTask = (taskId) => {
-        fetch(`https://taskmanagementapp-npo1.onrender.com/DeleteTask?taskId=${taskId}`, {
+        fetch(`https://tasksappcrud.onrender.com/DeleteTask?taskId=${taskId}`, {
             method: 'DELETE'
         })
             .then((response) => response.json())
             .then((data) => {
-                fetch("https://taskmanagementapp-npo1.onrender.com/AllTasks")
+                fetch("https://tasksappcrud.onrender.com/AllTasks")
                     .then((response) => response.json())
                     .then((updatedData) => {
                         setData(updatedData);
@@ -43,7 +43,7 @@ export default function AllTasks() {
             }
         })
         axios
-            .put(`https://taskmanagementapp-npo1.onrender.com/UpdateTask/${task?._id}`, updatedData
+            .put(`https://tasksappcrud.onrender.com/UpdateTask/${task?._id}`, updatedData
             )
             .then((response) => {
                 getTasks()

@@ -14,7 +14,7 @@ function Signup() {
   const addUserData = async (e) => {
     console.log("inputVal",inputval)
     e.preventDefault();
-    const res = await fetch("http://localhost:4200/AddUser", {
+    const res = await fetch("https://tasksappcrud.onrender.com/AddUser", {
       method: "POST",
       headers: {
         "Content-Type": "application/json"

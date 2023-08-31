@@ -11,7 +11,7 @@ export default function AddTask() {
     }
     const addTaskData = async (e) => {
         e.preventDefault();
-        const res = await fetch("https://taskmanagementapp-npo1.onrender.com/AddTask", {
+        const res = await fetch("https://tasksappcrud.onrender.com/AddTask", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"

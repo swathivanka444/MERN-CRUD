@@ -6,7 +6,7 @@ export default function EditTask() {
     const [tassk, setTask] = useState({});
     useEffect(() => {
         axios
-            .get(`https://taskmanagementapp-npo1.onrender.com/UpdateTask?taskId=${taskId}`)
+            .get(`https://tasksappcrud.onrender.com/UpdateTask?taskId=${taskId}`)
             .then((response) => {
                 setTask(response.data); 
             })
@@ -17,7 +17,7 @@ export default function EditTask() {
     const handleUpdate = (e) => {
         e.preventDefault();
         axios
-            .put(`https://taskmanagementapp-npo1.onrender.com/UpdateTask/${taskId}`, { ...tassk, completed: false })
+            .put(`https://tasksappcrud.onrender.com/UpdateTask/${taskId}`, { ...tassk, completed: false })
             .then((response) => {
                 console.log("update", response);
             })
