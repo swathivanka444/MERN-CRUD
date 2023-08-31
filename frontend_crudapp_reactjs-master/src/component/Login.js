@@ -18,9 +18,26 @@ export default function Login() {
   const handleChange = (e) => {
     setInputval({ ...inputval, [e.target.name]: e.target.value })
 }
+
+const isEmailValid = (email) => {
+  // Regular expression for email validation
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  return emailRegex.test(email);
+};
+
   const LoginUserData = async (e) => {
     console.log("inputVal",inputval)
     e.preventDefault();
+    if (inputval.email && !isEmailValid(inputval.email)) {
+      setErrorMessage("Invalid Email Address");
+      return;
+    }else{
+
+   
+    if(inputval && inputval.email && inputval.password)
+    {
+    
+   
     const res = await fetch("https://tasksappcrud.onrender.com/LoginUser", {
       method: "POST",
       headers: {
@@ -48,6 +65,21 @@ export default function Login() {
 
       setErrorMessage('Log In Failed')
     }
+  }else if(inputval.email && !inputval.password)
+  {
+setErrorMessage('Please Enter Password');
+  }else if(!inputval.email && inputval.password)
+  {
+    setErrorMessage('Please Enter Email');
+  }
+  else if(!inputval.email && !inputval.password)
+  {
+    setErrorMessage('Please Enter Email & Password');
+  }
+  else{
+    console.log('no error')
+  }
+}
   }
   return (
     <section className="vh-100" style={sectionStyle}>
@@ -71,18 +103,20 @@ export default function Login() {
                         <i className="fas fa-cubes fa-2x me-3" style={{ color: "#ff6219" }}></i>
                         
                       </div>
-      
+
                       <div className="form-outline mb-4">
-                        <input type="email" id="form2Example17" className="form-control form-control-lg"  name="email" onChange={handleChange} value={inputval.email}/>
-                        <label className="form-label" htmlFor="form2Example17">
-                          Email address
+                      <label className="form-label" htmlFor="form2Example17">
+                          Email address<span style={{ color: "#DA2517" }}>*</span>
                         </label>
+                        <input type="email" id="form2Example17" className="form-control form-control-lg"  name="email" onChange={handleChange} value={inputval.email}/>
+                       
                       </div>
                       <div className="form-outline mb-4">
-                        <input type="password" id="form2Example27" className="form-control form-control-lg" name="password" onChange={handleChange} value={inputval.password}/>
-                        <label className="form-label" htmlFor="form2Example27">
-                          Password
+                      <label className="form-label" htmlFor="form2Example27">
+                          Password<span style={{ color: "#DA2517" }}>*</span>
                         </label>
+                        <input type="password" id="form2Example27" className="form-control form-control-lg" name="password" onChange={handleChange} value={inputval.password}/>
+                       
                       </div>
                       <p style={{ color: "#DA2517" }}>{errorMessage}</p>
                       <div className="pt-1 mb-4">
