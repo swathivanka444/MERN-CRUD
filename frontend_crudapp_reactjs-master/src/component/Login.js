@@ -1,8 +1,8 @@
-import React, {useState} from "react";
-import { Link,useNavigate } from "react-router-dom";
+import React, { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 export default function Login() {
-  const [errorMessage,setErrorMessage]=useState("");
-  const navigate=useNavigate();
+  const [errorMessage, setErrorMessage] = useState("");
+  const navigate = useNavigate();
   const sectionStyle = {
     backgroundColor: "#9A616D",
   };
@@ -17,69 +17,69 @@ export default function Login() {
   })
   const handleChange = (e) => {
     setInputval({ ...inputval, [e.target.name]: e.target.value })
-}
+  }
 
-const isEmailValid = (email) => {
-  // Regular expression for email validation
-  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-  return emailRegex.test(email);
-};
+  const isEmailValid = (email) => {
+    // Regular expression for email validation
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailRegex.test(email);
+  };
 
   const LoginUserData = async (e) => {
-    console.log("inputVal",inputval)
+    console.log("inputVal", inputval)
     e.preventDefault();
-    if (inputval.email && !isEmailValid(inputval.email)) {
+    if (inputval.email && !isEmailValid(inputval.email))
+     {
       setErrorMessage("Invalid Email Address");
       return;
-    }else{
-
-   
-    if(inputval && inputval.email && inputval.password)
-    {
-    
-   
-    const res = await fetch("https://tasksappcrud.onrender.com/LoginUser", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify(inputval)
-    });
-
-    const data = await res.json();
-    console.log('reslogin',data)
-    if (res.status === 200) {
-      navigate('/home',{replace:true})
-    }
-    else if(res.status==401)
+    } 
+    else 
     {
 
-      setErrorMessage('Incorrect Password')
-    }
-    else if(res.status==400)
-    {
 
-      setErrorMessage('User does not exist!')
-    }
-    else {
+      if (inputval && inputval.email && inputval.password) {
+        const res = await fetch("https://tasksappcrud.onrender.com/LoginUser", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json"
+          },
+          body: JSON.stringify(inputval)
+        });
 
-      setErrorMessage('Log In Failed')
+        const data = await res.json();
+        console.log('reslogin', data)
+        if (res.status === 200) {
+          navigate('/home', { replace: true })
+        }
+        else if (res.status == 401) {
+
+          setErrorMessage('Incorrect Password')
+        }
+        else if (res.status == 400) {
+
+          setErrorMessage('User does not exist!')
+        }
+        else {
+
+          setErrorMessage('Log In Failed')
+        }
+      } 
+      else if (inputval.email && !inputval.password) 
+      {
+        setErrorMessage('Please Enter Password');
+      }
+       else if (!inputval.email && inputval.password)
+        {
+        setErrorMessage('Please Enter Email');
+      }
+      else if (!inputval.email && !inputval.password)
+       {
+        setErrorMessage('Please Enter Email & Password');
+      }
+      else {
+        console.log('no error')
+      }
     }
-  }else if(inputval.email && !inputval.password)
-  {
-setErrorMessage('Please Enter Password');
-  }else if(!inputval.email && inputval.password)
-  {
-    setErrorMessage('Please Enter Email');
-  }
-  else if(!inputval.email && !inputval.password)
-  {
-    setErrorMessage('Please Enter Email & Password');
-  }
-  else{
-    console.log('no error')
-  }
-}
   }
   return (
     <section className="vh-100" style={sectionStyle}>
@@ -101,34 +101,34 @@ setErrorMessage('Please Enter Password');
                     <form>
                       <div className="d-flex align-items-center mb-3 pb-1">
                         <i className="fas fa-cubes fa-2x me-3" style={{ color: "#ff6219" }}></i>
-                        
+
                       </div>
 
                       <div className="form-outline mb-4">
-                      <label className="form-label" htmlFor="form2Example17">
+                        <label className="form-label" htmlFor="form2Example17">
                           Email address<span style={{ color: "#DA2517" }}>*</span>
                         </label>
-                        <input type="email" id="form2Example17" className="form-control form-control-lg"  name="email" onChange={handleChange} value={inputval.email}/>
-                       
+                        <input type="email" id="form2Example17" className="form-control form-control-lg" name="email" onChange={handleChange} value={inputval.email} />
+
                       </div>
                       <div className="form-outline mb-4">
-                      <label className="form-label" htmlFor="form2Example27">
+                        <label className="form-label" htmlFor="form2Example27">
                           Password<span style={{ color: "#DA2517" }}>*</span>
                         </label>
-                        <input type="password" id="form2Example27" className="form-control form-control-lg" name="password" onChange={handleChange} value={inputval.password}/>
-                       
+                        <input type="password" id="form2Example27" className="form-control form-control-lg" name="password" onChange={handleChange} value={inputval.password} />
+
                       </div>
                       <p style={{ color: "#DA2517" }}>{errorMessage}</p>
                       <div className="pt-1 mb-4">
-                        <Link className="btn btn-dark btn-lg btn-block" to='/home' onClick={LoginUserData}> 
-                        Login
-                        </Link> 
+                        <Link className="btn btn-dark btn-lg btn-block" to='/home' onClick={LoginUserData}>
+                          Login
+                        </Link>
                       </div>
-                      
+
                       <p className="mb-5 pb-lg-2" style={{ color: "#393f81" }}>
                         Don't have an account? <a href="/signup" style={{ color: "#393f81" }}>Register here</a>
                       </p>
-                      
+
                     </form>
                   </div>
                 </div>

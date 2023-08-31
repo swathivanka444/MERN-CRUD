@@ -1,6 +1,8 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 export default function AddTask() {
+    const navigate = useNavigate();
+    const [errorMessage, setErrorMessage] = useState("");
     const [inputval, setInputval] = useState({
         title: "",
         description: "",
@@ -11,20 +13,35 @@ export default function AddTask() {
     }
     const addTaskData = async (e) => {
         e.preventDefault();
-        const res = await fetch("https://tasksappcrud.onrender.com/AddTask", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify(inputval)
-        });
-    
-        const data = await res.json();
-        if (res.status === 422 || !data) {
-            alert("Error")
+        if (inputval && inputval.title && inputval.description) {
+            const res = await fetch("https://tasksappcrud.onrender.com/AddTask", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify(inputval)
+            });
+
+            const data = await res.json();
+            if (res.status === 201) {
+                navigate('/home', { replace: true })
+            }
+            else {
+
+                setErrorMessage('Data Not Added')
+            }
+        }
+        else if (inputval.title && !inputval.description) {
+            setErrorMessage('Please Enter Description');
+        }
+        else if (!inputval.title && inputval.description) {
+            setErrorMessage('Please Enter Title');
+        }
+        else if (!inputval.title && !inputval.description) {
+            setErrorMessage('Please Enter Title & Description');
         }
         else {
-            console.log("Data Added");
+            console.log('no error')
         }
     }
 
@@ -40,6 +57,7 @@ export default function AddTask() {
                     <label htmlFor="exampleInputEmail1" className="form-label">Description</label>
                     <input type="text" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="description" onChange={handleChange} value={inputval.description} />
                 </div>
+                <p style={{ color: "#DA2517" }}>{errorMessage}</p>
                 <button className="btn btn-primary" onClick={addTaskData}>Add</button>
             </form>
         </div>
